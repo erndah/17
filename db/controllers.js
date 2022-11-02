@@ -11,18 +11,18 @@ const topup = (req, res) => {
     err.data = errors.array();
     throw err;
   }
-  let b ={
-    saldo:req.body.saldo
-  }
+  // let b ={
+  //   saldo:req.body.saldo
+  // }
   let a = {
     tanggal: req.body.tanggal,
     tipe: req.body.tipe,
     nominal: req.body.nominal,
   };
   const sql = ` INSERT INTO riwayat ( tanggal ,tipe,nominal )
-                VALUE ( "${a.tanggal}","${a.tipe}","${a.nominal}")`;
-//   temp = parseInt(a.nominal)+parseInt(b.saldo)
-// const sql2 = `UPDATE modal SET saldo="${temp}" WHERE id='0'`
+                VALUE ( "${a.tanggal}","topup","${a.nominal}")`;
+  // temp = parseInt(a.nominal)+parseInt(a.nakhir)
+  // const sql2 = `UPDATE modal SET saldo="${temp}" WHERE id='0'`
   db.query((sql), (err, result) => {
     if (err) throw err;
     res.status(200).json({
@@ -49,7 +49,7 @@ const jual = (req, res) => {
       nohp: req.body.nohp
     };
     const sql = ` INSERT INTO riwayat ( tanggal, tipe ,provider, nominal, nohp )
-                  VALUE ( "${a.tanggal}","${a.tipe}","${a.provider}","${a.nominal}","${a.nohp}")
+                  VALUE ( "${a.tanggal}","jual","${a.provider}","${a.nominal}","${a.nohp}")
                   `;
     
   
@@ -100,14 +100,15 @@ const updatemodal = (req, res) => {
     // tanggal: req.body.tanggal,
     // tipe: req.body.tipe,
     // provider: req.body.provider,
-    // saldo: req.body.saldo,
+    saldo: req.body.saldo,
     // nohp: req.body.nohp
-    nominal: req.body.nominal,
+    // nominal: req.body.nominal,
 
   };
-  const sql = ` INSERT INTO modal ( saldo )
-                `;
-
+  // const sql = ` INSERT INTO modal ( saldo )
+  //               `;
+  const id = req.body.getId;
+  const sql = `UPDATE modal SET saldo="${a.saldo}" WHERE id='0'`
   db.query(sql, (err, result) => {
     if (err) throw err;
     res.status(200).json({
