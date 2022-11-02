@@ -7,22 +7,17 @@ const Card = (props) => {
     //     }
     //     props.set(datas)
     // }
-
+     
     return (
-        <div className="card">
-            <table>
-                <tr>
-                    <th>Tanggal</th>
-                    <th>Tipe</th>
-                    <th>Saldo</th>
-                </tr>
+ 
+            
                 <tr>
                     <td>{props.tanggal}</td>
                     <td>{props.tipe}</td>
                     <td>{props.nominal}</td>
                 </tr>
-            </table>
-        </div>
+      
+       
     )
 }
 
